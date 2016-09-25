@@ -20,7 +20,7 @@ Realiza el mismo ejercicio anterior pero utilizando Runnables.
 
 ## Ejercicio 3
 
-En este caso intentaremos dividir el trabajo en diferentes threads.
+En este caso intentaremos dividir el trabajo en diferentes threads que se ejecutarán concurrentemente.
 
 Requisitos:
 
@@ -29,9 +29,10 @@ Requisitos:
 * Cada thread debe encargarse de realizar una parte equivativa del cálculo
         thread 1 [1..50]
         thread 2 [51..100]
+* El thread padre lanzará todos los hilos (mediante un bucle) y guardará una referencia del thread.
 * Cada thread debe imprimir por pantalla su id, seguido de la lista de primos en su rango.
-* Los ids serán asignados en orden incremental por el thread principal de 1 a N.
 * Cada thread siempre tiene que esperar a que finalice el thread anterior antes de imprimir!
+* Los ids serán asignados en orden incremental por el thread principal de 1 a N.
 * Utiliza el método de implementar Runnable.
 * El thread principal debe esperar a la finalización del thread con mayor id (el último).
 
@@ -44,3 +45,5 @@ Requisitos:
 * El thread principal debe poder cancelar el trabajo de los threads si se sobrepasa el límite de tiempo.
 * Para ello debes utilizar el método interrupt() sobre todos los threads que todavía estén vivos (con el método isAlive(), por ejemplo)
 * Los threads deben intentar acabar imprimiendo los resultados parciales que han obtenido.
+* El thread principal debe esperar a que finalicen todos los threads.
+
