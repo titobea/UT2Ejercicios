@@ -10,18 +10,22 @@ public class PrimeNumbers {
 	    return true;
 	}
 	
-	// TODO: Modifica el mÃ©todo para que sea capaz de lanzar
-	// una interrupciÃ³n InterruptedException en caso de que en el hilo
-	// en el que se ejecuta el mÃ©todo (Thread.getCurrentThread()) se haya
-	// recibido un flag interrupt (IsInterrupted())
-	// Esta comprobaciÃ³n debe hacerse al menos una vez en cada iteraciÃ³n
-	public static List<Integer> primesInRange(int from, int to) {
+	// TODO: Modifica el método para que sea capaz de lanzar
+	// una interrupción InterruptedException en caso de que en el hilo
+	// en el que se ejecuta el método (Thread.currentThread()) se haya
+	// recibido un flag interrupt (isInterrupted())
+	// Esta comprobación debe hacerse al menos una vez en cada iteración
+	public static List<Integer> primesInRange(int from, int to) throws InterruptedException {
 		ArrayList<Integer> primes = new ArrayList<Integer>();
 		
 		for (int num=from; num<to; num++) {
-			if (isPrime(num)) {
-				primes.add(new Integer(num));
-			}
+			if (Thread.currentThread().isInterrupted()){					
+				return primes;				
+			}else{
+				if (isPrime(num)) {
+					primes.add(new Integer(num));
+				}
+			}			
 		}
 		
 		return primes;
